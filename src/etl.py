@@ -34,11 +34,38 @@ def get_stops(state, columns, inpath=None):
     else:
         return get_stops_local(inpath)
 
+def get_clean_stops(pth, df):
+        
+    state = pth.split('_')[0].upper()
+
+    df = clean_races(df)
+    df["county_name"] = df["county_name"].apply(clean_county, args=[state])
+
+    return df
+
+def clean_races(df):
+
+    race_map = {"white" : "White",
+                "black" : "Black",
+                "hispanic" : "Hispanic",
+                "asian/pacific islander" : "Asian"}
+
+    df["subject_race"] = df["subject_race"].map(race_map)
+    df["officer_race"] = df["officer_race"].map(race_map)
+    
+    return df
+
+def clean_county(county, state):
+
+    county = county + ", " + state
+    
+    return county
+
 # ---------------------------------------------------------------------
 # Driver Function(s)
 # ---------------------------------------------------------------------
     
-def get_data(states, columns, outpath=None, indir=None):
+def get_data(states, columns, outpath=None, inpath=None):
     '''
     downloads and saves traffic stops tables 
     at the specified output directory for the
@@ -46,7 +73,7 @@ def get_data(states, columns, outpath=None, indir=None):
     
     :param: states: a list of states from which to collect data.
     :param: columns: list of columns to keep from ingested data.
-    :param: outdir: the directory to which to save the data.
+    :param: outpath: the directory to which to save the data.
     '''
 
     print('Ingesting data...')
@@ -55,8 +82,8 @@ def get_data(states, columns, outpath=None, indir=None):
         
     for state in states:
 
-        if indir:
-            inpath = os.path.join(indir, '%s_stops.csv' % (state))
+        if inpath:
+            inpath = os.path.join(inpath, '%s_stops.csv' % (state))
         else:
             inpath = None
 
@@ -66,4 +93,24 @@ def get_data(states, columns, outpath=None, indir=None):
         table.to_csv(os.path.join(outpath, file_name))
     
     print('...done!')
+
     return
+
+def clean_stops(df_iter=(), outpath=None, inpath=None):
+    
+    print('Cleaning data...')
+    
+    if outpath and not os.path.exists(outpath):
+        os.makedirs(outpath)
+
+    if not df_iter:
+        df_iter = ((p, pd.read_csv(os.path.join(inpath, p))) for p in os.listdir(inpath))
+
+    for pth, df in df_iter:
+        cleaned = get_clean_stops(pth, df)
+        if outpath:
+            cleaned.to_csv(os.path.join(outpath, pth))
+            
+    print('...done!')
+            
+    return 

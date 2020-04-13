@@ -10,6 +10,7 @@ sys.path.insert(0, 'src')
 from etl import get_data
 
 DATA_PARAMS = 'config/data-params.json'
+CLEAN_PARAMS = 'config/process-params.json'
 
 def load_params(fp):
     with open(fp) as fh:
