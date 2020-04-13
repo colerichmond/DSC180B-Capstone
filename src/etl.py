@@ -33,7 +33,7 @@ def get_data(states, columns, outpath):
         
     for state in states:
         table = get_stops(state, columns)
-        file_name = '%s_stops.csv' % (year)
+        file_name = '%s_stops.csv' % (state)
         table.to_csv(os.path.join(outpath, file_name))
     
     print('...done!')
