@@ -37,4 +37,4 @@ PROJECT
 
 ### `notebooks`
 
-* `sandbox.ipynb`: Imports code from `src` for the purpose of analysss. 
+* `sandbox.ipynb`: Imports code from `src` for the purpose of analysis. 
