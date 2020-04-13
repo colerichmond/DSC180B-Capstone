@@ -58,7 +58,7 @@ def clean_races(df):
 
 def clean_county(county, state):
 
-    county = county + ", " + state
+    county = str(county) + ", " + state
     
     return county
 
@@ -68,6 +68,31 @@ def convert_date(df):
     
     return df
 
+def create_county_state(row):
+    county_state = row['COUNTY'] + ', '
+    if row['STATE'] == 'Florida':
+        county_state += 'FL'
+    elif row['STATE'] == 'South Carolina':
+        county_state += 'SC'
+    else:
+        county_state += 'WA'
+    return county_state
+
+
+def create_population_dataset(fname):
+
+    final_cols = ['County_State','White','Black','Asian','Hispanic']
+
+    national_pop = pd.read_csv(fname,encoding="ISO-8859-1")
+    states_pop = national_pop[national_pop['STATE'].isin(['Washington','Florida','South Carolina'])]
+    states_pop['County_State'] = states_pop.apply(create_county_state,axis=1)
+    col_rename_mapper = {'H7Z003':'White','H7Z004':'Black','H7Z006':'Asian'}
+    states_pop.rename(col_rename_mapper,axis=1,inplace=True)
+    states_pop['Hispanic'] = states_pop['H7Z010'] - states_pop['H7Z017']
+
+    pop_df = states_pop[final_cols]
+    return pop_df
+    
 # ---------------------------------------------------------------------
 # Driver Function(s)
 # ---------------------------------------------------------------------

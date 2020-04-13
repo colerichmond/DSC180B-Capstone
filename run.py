@@ -7,7 +7,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 sys.path.insert(0, 'src') 
-from etl import get_data
+from etl import get_data, clean_stops
 
 DATA_PARAMS = 'config/data-params.json'
 CLEAN_PARAMS = 'config/process-params.json'
