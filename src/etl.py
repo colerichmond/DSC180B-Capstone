@@ -12,7 +12,7 @@ def get_stops(state, columns):
     url = 'https://stacks.stanford.edu/file/druid:kx738rc7407/kx738rc7407_%s_statewide_2019_12_17.csv.zip' % (state)
     column_set = columns
 
-    return pd.read_csv(url).loc[:, column_set]
+    return pd.read_csv(url, nrows=1000).loc[:, column_set]
 
 # ---------------------------------------------------------------------
 # Driver Function(s)

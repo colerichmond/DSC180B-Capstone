@@ -29,7 +29,7 @@ PROJECT
 
 ### `config`
 
-* To be added...
+* `data-params.json`: Common parameters for getting data, serving as inputs to library code.
 
 ### `references`
 
@@ -37,4 +37,4 @@ PROJECT
 
 ### `notebooks`
 
-* To be added...
+* `sandbox.ipynb`: Imports code from `src` for the purpose of analysss. 
