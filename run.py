@@ -1,0 +1,46 @@
+#!/usr/bin/env python
+
+import sys
+import json
+import shutil
+import warnings
+warnings.filterwarnings('ignore')
+
+sys.path.insert(0, 'src') 
+from etl import get_data
+
+DATA_PARAMS = 'config/data-params.json'
+
+def load_params(fp):
+    with open(fp) as fh:
+        param = json.load(fh)
+
+    return param
+
+def main(targets):
+    
+    if 'clean' in targets:
+        shutil.rmtree('data/raw', ignore_errors=True)
+        shutil.rmtree('data/cleaned', ignore_errors=True)
+        shutil.rmtree('test/raw', ignore_errors=True)
+        shutil.rmtree('test/cleaned', ignore_errors=True)
+    
+    if 'data' in targets:
+        cfg = load_params(DATA_PARAMS)
+        get_data(**cfg)
+        
+        # cfg = load_params(CLEAN_PARAMS)
+        # clean_stops(**cfg)
+        
+    # if 'test' in targets:
+    #     cfg = load_params(TEST_DATA_PARAMS)
+    #     get_data(**cfg)
+
+    #     cfg = load_params(TEST_CLEAN_PARAMS)
+    #     clean_stops(**cfg)
+     
+    return 
+
+if __name__ == '__main__':
+    targets = sys.argv[1:]
+    main(targets)
