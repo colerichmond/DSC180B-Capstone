@@ -92,7 +92,7 @@ def create_population_dataset(fname):
 
     pop_df = states_pop[final_cols]
     return pop_df
-    
+
 # ---------------------------------------------------------------------
 # Driver Function(s)
 # ---------------------------------------------------------------------
@@ -123,9 +123,7 @@ def get_data(states, columns, outpath=None, inpath=None):
 
         file_name = '%s_stops.csv' % (state)
         table.to_csv(os.path.join(outpath, file_name))
-
-    #table = get_pop(state, inpath)
-    
+            
     print('...done!')
 
     return
