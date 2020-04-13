@@ -39,6 +39,7 @@ def get_clean_stops(pth, df):
     state = pth.split('_')[0].upper()
 
     df = clean_races(df)
+    df = convert_date(df)
     df["county_name"] = df["county_name"].apply(clean_county, args=[state])
 
     return df
@@ -60,6 +61,12 @@ def clean_county(county, state):
     county = county + ", " + state
     
     return county
+
+def convert_date(df):
+    
+    df['date'] = pd.to_datetime(df['date'], format="%Y-%m-%d", errors='coerce')
+    
+    return df
 
 # ---------------------------------------------------------------------
 # Driver Function(s)
@@ -91,6 +98,8 @@ def get_data(states, columns, outpath=None, inpath=None):
 
         file_name = '%s_stops.csv' % (state)
         table.to_csv(os.path.join(outpath, file_name))
+
+    #table = get_pop(state, inpath)
     
     print('...done!')
 

@@ -30,8 +30,8 @@ def main(targets):
         cfg = load_params(DATA_PARAMS)
         get_data(**cfg)
         
-        # cfg = load_params(CLEAN_PARAMS)
-        # clean_stops(**cfg)
+        cfg = load_params(CLEAN_PARAMS)
+        clean_stops(**cfg)
         
     # if 'test' in targets:
     #     cfg = load_params(TEST_DATA_PARAMS)
