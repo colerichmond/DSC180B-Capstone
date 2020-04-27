@@ -22,7 +22,6 @@
       "county_name",
       "officer_sex",
       "officer_years_of_service",
-      "reason_for_stop",
       "subject_age",
       "time",
       "vehicle_registration_state"
