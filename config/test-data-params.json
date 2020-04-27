@@ -1,5 +1,5 @@
 {
-    "location" : ["sc"],
+    "locations" : ["sc"],
     "columns" : [
       "subject_race",
       "subject_sex",
