@@ -8,11 +8,13 @@ warnings.filterwarnings('ignore')
 
 sys.path.insert(0, 'src') 
 from etl import get_data, clean_stops
+from model import driver
 
 DATA_PARAMS = 'config/data-params.json'
 CLEAN_PARAMS = 'config/process-params.json'
 TEST_DATA_PARAMS = 'config/test-data-params.json'
 TEST_CLEAN_PARAMS = 'config/test-process-params.json'
+MODEL_PARAMS = 'config/model.json'
 
 def load_params(fp):
     with open(fp) as fh:
@@ -41,6 +43,10 @@ def main(targets):
 
         cfg = load_params(TEST_CLEAN_PARAMS)
         clean_stops(**cfg)
+
+    if 'model' in targets:
+        cfg = load_params(MODEL_PARAMS)
+        driver(**cfg)
      
     return 
 
