@@ -11,6 +11,8 @@ from etl import get_data, clean_stops
 
 DATA_PARAMS = 'config/data-params.json'
 CLEAN_PARAMS = 'config/process-params.json'
+TEST_DATA_PARAMS = 'config/test-data-params.json'
+TEST_CLEAN_PARAMS = 'config/test-process-params.json'
 
 def load_params(fp):
     with open(fp) as fh:
@@ -33,12 +35,12 @@ def main(targets):
         cfg = load_params(CLEAN_PARAMS)
         clean_stops(**cfg)
         
-    # if 'test' in targets:
-    #     cfg = load_params(TEST_DATA_PARAMS)
-    #     get_data(**cfg)
+    if 'test' in targets:
+        cfg = load_params(TEST_DATA_PARAMS)
+        get_data(**cfg)
 
-    #     cfg = load_params(TEST_CLEAN_PARAMS)
-    #     clean_stops(**cfg)
+        cfg = load_params(TEST_CLEAN_PARAMS)
+        clean_stops(**cfg)
      
     return 
 
