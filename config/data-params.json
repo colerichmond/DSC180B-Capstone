@@ -1,34 +1,38 @@
 {
-    "states" : ["sc",
-                "fl",
-                "wa",
-                "pa"],
-    "columns" : ["raw_row_number",
-                 "date",
-                 "location",
-                 "county_name",
-                 "subject_age",
-                 "subject_race",
-                 "subject_sex",
-                 "officer_race",
-                 "type",
-                 "violation",
-                 "arrest_made",
-                 "citation_issued",
-                 "outcome",
-                 "search_conducted"],
-    "pit_columns" : ["time",
-                     "lat",
-                     "lng",
-                     "subject_race",
-                     "subject_sex",
-                     "officer_age",
-                     "officer_race",
-                     "officer_sex",
-                     "violation",
-                     "arrest_made",
-                     "citation_issued",
-                     "contraband_found",
-                     "search_conducted"],
-    "outpath" : "data/raw"
+   "locations":[
+      "sc",
+      "fl",
+      "pit"
+   ],
+   "all_cols":[
+      "subject_race",
+      "subject_sex",
+      "officer_race",
+      "officer_age",
+      "violation",
+      "arrest_made",
+      "citation_issued",
+      "search_conducted"
+   ],
+   "sc_cols":[
+      "county_name",
+      "subject_age"
+   ],
+   "fl_cols":[
+      "county_name",
+      "officer_sex",
+      "officer_years_of_service",
+      "reason_for_stop",
+      "subject_age",
+      "time",
+      "vehicle_registration_state"
+   ],
+   "pit_cols":[
+      "time",
+      "lat",
+      "lng",
+      "officer_sex",
+      "contraband_found"
+   ],
+   "outpath":"data/raw"
 }
