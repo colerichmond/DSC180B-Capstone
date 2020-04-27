@@ -1,7 +1,8 @@
 {
     "states" : ["sc",
                 "fl",
-                "wa"],
+                "wa",
+                "pa"],
     "columns" : ["raw_row_number",
                  "date",
                  "location",
@@ -16,5 +17,18 @@
                  "citation_issued",
                  "outcome",
                  "search_conducted"],
+    "pit_columns" : ["time",
+                     "lat",
+                     "lng",
+                     "subject_race",
+                     "subject_sex",
+                     "officer_age",
+                     "officer_race",
+                     "officer_sex",
+                     "violation",
+                     "arrest_made",
+                     "citation_issued",
+                     "contraband_found",
+                     "search_conducted"],
     "outpath" : "data/raw"
 }
