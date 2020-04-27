@@ -1,0 +1,18 @@
+{
+    "states" : ["sc"],
+    "columns" : ["raw_row_number",
+                 "date",
+                 "location",
+                 "county_name",
+                 "subject_age",
+                 "subject_race",
+                 "subject_sex",
+                 "officer_race",
+                 "type",
+                 "violation",
+                 "arrest_made",
+                 "citation_issued",
+                 "outcome",
+                 "search_conducted"],
+    "outpath" : "test/raw"
+}
