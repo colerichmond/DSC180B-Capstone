@@ -63,3 +63,56 @@ def driver(indir, outdir=None):
     propensity_scores = data_loader(indir)
 
     return propensity_scores
+
+
+def propensity_matching(propensity_scores):
+    
+    """
+    Matches traffic stops based on their respective searched, cited and arrested propensity scores.
+    Returns a list of dictionaries that indicate the indicies of the matches as follows:
+        [searched matches, cited matches, arrested matches]
+    A return dictionary entry example for searched matches is:
+        {1:124} (indicates that the stop at the 1st index has a searched propensity score closest to 124)
+    """
+    
+    searched_dict = {}
+    cited_dict = {}
+    arrested_dict = {}
+    searched_propensity_scores = [(num,s[0]) for num,s in enumerate(propensity_scores)]
+    cited_propensity_scores = [(num,s[1]) for num,s in enumerate(propensity_scores)]
+    arrested_propensity_scores = [(num,s[2]) for num,s in enumerate(propensity_scores)]
+    
+    for num, scores in enumerate(propensity_scores):
+        searched_ps, cited_ps, arrested_ps = scores
+        
+        closest_match_searched = -1
+        closest_match_searched_diff = 1
+        for ind, ps in searched_propensity_scores:
+            if ind == num:
+                continue
+            if abs(ps-searched_ps) < closest_match_searched_diff:
+                closest_match_searched_diff = abs(ps-searched_ps)
+                closest_match_searched = ind
+        searched_dict[num] = closest_match_searched
+        
+        closest_match_cited = -1
+        closest_match_cited_diff = 1
+        for ind, ps in cited_propensity_scores:
+            if ind == num:
+                continue
+            if abs(ps-cited_ps) < closest_match_cited_diff:
+                closest_match_cited_diff = abs(ps-cited_ps)
+                closest_match_cited = ind
+        cited_dict[num] = closest_match_cited
+        
+        closest_match_arrested = -1
+        closest_match_arrested_diff = 1
+        for ind, ps in arrested_propensity_scores:
+            if ind == num:
+                continue
+            if abs(ps-arrested_ps) < closest_match_arrested_diff:
+                closest_match_arrested_diff = abs(ps-arrested_ps)
+                closest_match_arrested= ind
+        arrested_dict[num] = closest_match_arrested
+        
+    return [searched_dict,cited_dict,arrested_dict]
