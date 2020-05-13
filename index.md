@@ -55,4 +55,8 @@ To ensure that we isolate the effect that preference-based discrimination has on
 
 > Wrap up our findings here and propose a solution to the aforementioned problem.
 
+Shown here is what we expect our conclusion plot to look like wherein we identify any statistical significance that we found in our analysis.
+
+<div style="text-align:center"><img src="imgs/conclusion.jpg" /></div>
+
 *... add proposed fixes to police departments to combat racial discrimination ...*
