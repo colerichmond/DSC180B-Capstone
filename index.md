@@ -30,6 +30,10 @@ Add information about data ingestion here and include exploratory data analysis.
 
 <div style="text-align:center"><img src="imgs/eda.png" /></div>
 
+*... put interactive plot here to allow audience to do exploratory data analysis for themselves...*
+
+<div style="text-align:center"><img src="imgs/interactive.jpg" /></div>
+
 *... potential to add real-world example of racial bias in traffic stops here...*
 
 ## Analysis
