@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-def get_stops_url(state, columns):
+def get_stops_url(location, all_cols, sc_cols, fl_cols, pa_cols):
     '''
     return a downloadable file of traffic
     stops for a given year before RIPA.
@@ -9,9 +9,17 @@ def get_stops_url(state, columns):
     :param: given year to fetch
     '''
     
-    url = 'https://stacks.stanford.edu/file/druid:kx738rc7407/kx738rc7407_%s_statewide_2019_12_17.csv.zip' % (state)
+    if location is "pa":
+        url = 'https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_pa_pittsburgh_2020_04_01.csv.zip'
+        cols = all_cols + pa_cols
+    else:
+        url = 'https://stacks.stanford.edu/file/druid:kx738rc7407/kx738rc7407_%s_statewide_2019_12_17.csv.zip' % (location)
+        if location is "sc":  
+            cols = all_cols + sc_cols
+        if location is "fl":
+            cols = all_cols + fl_cols
 
-    return pd.read_csv(url, nrows=500).loc[:, columns]
+    return pd.read_csv(url, nrows=100).loc[:, cols]
 
 def get_stops_local(inpath):
     '''
@@ -23,14 +31,16 @@ def get_stops_local(inpath):
 
     return df
 
-def get_stops(state, columns, inpath=None):
+# def get_stops(state, columns, inpath=None):
+def get_stops(location, all_cols, sc_cols, fl_cols, pa_cols, inpath='data/raw'):
     '''
     return a table of season statistics for a
     given team and year.
     '''
 
     if not inpath:
-        return get_stops_url(state, columns)
+        # return get_stops_url(state, columns)
+        return get_stops_url(location, all_cols, sc_cols, fl_cols, pa_cols)
     else:
         return get_stops_local(inpath)
 
@@ -94,9 +104,9 @@ def create_population_dataset(fname):
     return pop_df
 
 def pitsburg(state, columns, pit_columns, inpath):
-
-     url = 'https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_pa_pittsburgh_2020_04_01.csv.zip'
-
+    
+    url = 'https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_pa_pittsburgh_2020_04_01.csv.zip'
+    
     pits = pd.read_csv(url, nrows=500).loc[:, pit_columns]
     pits = pits.dropna()
     pits = pits[(pits.subject_race.isin(['white','black','asian/pacific islander','hispanic']))&(pits.officer_race != 'unknown')].reset_index(drop=True)
@@ -158,7 +168,8 @@ def pitsburg(state, columns, pit_columns, inpath):
 # Driver Function(s)
 # ---------------------------------------------------------------------
     
-def get_data(states, columns, outpath=None, inpath=None):
+# def get_data(states, columns, outpath=None, inpath=None):
+def get_data(locations, all_cols, sc_cols, fl_cols, pit_cols, outpath=None, inpath=None):
     '''
     downloads and saves traffic stops tables 
     at the specified output directory for the
@@ -173,19 +184,20 @@ def get_data(states, columns, outpath=None, inpath=None):
     if not os.path.exists(outpath):
         os.makedirs(outpath)
         
-    for state in states:
+    for location in locations:
 
         if inpath:
-            inpath = os.path.join(inpath, '%s_stops.csv' % (state))
+            localpath = os.path.join(inpath, '%s_stops.csv' % (location))
         else:
-            inpath = None
+            localpath = None
 
-        if state == "pa":
-            table = pittsburgh(state, columns, pit_columns, inpath)
-        else:
-            table = get_stops(state, columns, pit_columns, inpath)
+        table = get_stops(location, all_cols, sc_cols, fl_cols, pa_cols, localpath)
+        # if location == "pa":
+        #     table = pittsburgh(location, all_cols, pit_cols, inpath)
+        # else:
+        #     table = get_stops(location, all_cols, pit_cols, inpath)
 
-        file_name = '%s_stops.csv' % (state)
+        file_name = '%s_stops.csv' % (location)
         table.to_csv(os.path.join(outpath, file_name))
             
     print('...done!')

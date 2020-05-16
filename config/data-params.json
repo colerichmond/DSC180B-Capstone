@@ -2,7 +2,7 @@
    "locations":[
       "sc",
       "fl",
-      "pit"
+      "pa"
    ],
    "all_cols":[
       "subject_race",
@@ -26,12 +26,13 @@
       "time",
       "vehicle_registration_state"
    ],
-   "pit_cols":[
+   "pa_cols":[
       "time",
       "lat",
       "lng",
       "officer_sex",
       "contraband_found"
    ],
+   "inpath":"data/raw",
    "outpath":"data/raw"
 }
