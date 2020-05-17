@@ -81,7 +81,7 @@ def clean_sc(pth, df):
     for row, func in sc_func_dict.items():
         df[row] = df[row].apply(func)
     
-    df = clean_races(df)
+    #df = clean_races(df)
 
     return df
 
@@ -99,7 +99,7 @@ def clean_fl(pth, df):
     for row, func in fl_func_dict.items():
         df[row] = df[row].apply(func)
 
-    df = clean_races(df)
+    #df = clean_races(df)
     
     return df
 
@@ -120,22 +120,22 @@ def clean_pa(pth, df):
     for row, func in pa_func_dict.items():
         df[row] = df[row].apply(func)
     
-    df = clean_races(df)
+    #df = clean_races(df)
 
     return df
 
 # def subject_race_filter(race,is_sc=False):
 def clean_subject_race(race, is_sc=False):
     if (race is 'asian/pacific islander') or (race is 'other' and is_sc):
-        return 'Asian'
+        return 'asian'
     else:
         return race
 
 def clean_officer_race(race, is_pa=False):
     if race is 'asian/pacific islander':
-        return 'Asian'
+        return 'asian'
     elif race is 'other' and is_pits:
-        return 'Hispanic'
+        return 'hispanic'
     else:
         return race
 
