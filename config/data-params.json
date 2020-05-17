@@ -19,6 +19,7 @@
       "subject_age"
    ],
    "fl_cols":[
+      "date",
       "county_name",
       "officer_sex",
       "officer_years_of_service",
@@ -27,6 +28,7 @@
       "vehicle_registration_state"
    ],
    "pa_cols":[
+      "date",
       "time",
       "lat",
       "lng",
