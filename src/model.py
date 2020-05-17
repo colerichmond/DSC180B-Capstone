@@ -76,6 +76,8 @@ def propensity_score_func(df_, **cfg):
                 return 'Night'
 
         df['time'] = df['time'].apply(group_time)
+        
+    df.drop("date",axis=1,inplace=True)
     
     driver_r1, officer_r1 = cfg['strata_1'].split('/')
     driver_r2, officer_r2 = cfg['strata_2'].split('/')
