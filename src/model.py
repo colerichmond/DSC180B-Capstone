@@ -76,8 +76,9 @@ def propensity_score_func(df_, indir, outdir, ohe_cols, strata_1, strata_2, ps_t
                 return 'Night'
 
         df['time'] = df['time'].apply(group_time)
-        
-    df.drop("date",axis=1,inplace=True)
+    
+    if 'date' in df.columns:    
+        df.drop("date",axis=1,inplace=True)
     
     driver_r1, officer_r1 = strata_1.split('/')
     driver_r2, officer_r2 = strata_2.split('/')
