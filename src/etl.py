@@ -12,17 +12,17 @@ def get_stops_url(location, all_cols, sc_cols, fl_cols, pa_cols):
     if location is "pa":
         url = 'https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_pa_pittsburgh_2020_04_01.csv.zip'
         cols = all_cols + pa_cols
-        table = pd.read_csv(url, nrows=100).loc[:, cols].dropna()
+        table = pd.read_csv(url, nrows=50000).loc[:, cols].dropna()
     else:
         url = 'https://stacks.stanford.edu/file/druid:kx738rc7407/kx738rc7407_%s_statewide_2019_12_17.csv.zip' % (location)
         if location is "sc":  
             cols = all_cols + sc_cols
-            table = pd.read_csv(url, nrows=100).loc[:, cols]
+            table = pd.read_csv(url, nrows=50000).loc[:, cols]
             cols.remove("violation")
             table = table.dropna(subset=cols)
         if location is "fl":
             cols = all_cols + fl_cols
-            table = pd.read_csv(url, nrows=100).loc[:, cols].dropna()
+            table = pd.read_csv(url, nrows=50000).loc[:, cols].dropna()
 
     return table
 

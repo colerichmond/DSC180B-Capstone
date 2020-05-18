@@ -59,7 +59,7 @@ from sklearn.preprocessing import OneHotEncoder
 
 #     return lr
 
-def propensity_score_func(df_, **cfg):
+def propensity_score_func(df_, indir, outdir, ohe_cols, strata_1, strata_2, ps_threshold, alpha):
     
     df = df_.copy()
     if 'time' in df.columns:
@@ -77,11 +77,11 @@ def propensity_score_func(df_, **cfg):
 
         df['time'] = df['time'].apply(group_time)
     
-    driver_r1, officer_r1 = cfg['strata_1'].split('/')
-    driver_r2, officer_r2 = cfg['strata_2'].split('/')
+    driver_r1, officer_r1 = strata_1.split('/')
+    driver_r2, officer_r2 = strata_2.split('/')
     df_ps = df[(df['subject_race'].isin([driver_r1,driver_r2])) & (df['officer_race'].isin([officer_r1,officer_r2]))]
     
-    ohe_cols = list(set(df_ps.columns).intersection(cfg['ohe_cols']))
+    ohe_cols = list(set(df_ps.columns).intersection(ohe_cols))
     ohe_df = pd.get_dummies(df_ps,columns=ohe_cols)
     ohe_df.drop(['subject_race','officer_race'],axis=1,inplace=True)
     lr = LogisticRegression(n_jobs=1,solver='liblinear')
@@ -107,8 +107,6 @@ def propensity_score_func(df_, **cfg):
          # Probability searched 
         X = ohe_df.drop(['arrest_made','citation_issued','search_conducted'],axis=1)
         Y = ohe_df['search_conducted']
-        display(X)
-        display(Y)
         lr.fit(X,Y)
         probs_searched = [x[1] for x in lr.predict_proba(X)]
 
@@ -132,10 +130,10 @@ def propensity_score_func(df_, **cfg):
         
         return df_ps.reset_index(drop=True)
 
-def propensity_score_matching(df,**cfg):
+def propensity_score_matching(df, indir, outdir, ohe_cols, strata_1, strata_2, ps_threshold, alpha):
     
-    driver_r1, officer_r1 = cfg['strata_1'].split('/')
-    driver_r2, officer_r2 = cfg['strata_2'].split('/')
+    driver_r1, officer_r1 = strata_1.split('/')
+    driver_r2, officer_r2 = strata_2.split('/')
     
     s1 = df[(df['subject_race'] == driver_r1) & (df['officer_race'] == officer_r1)]
     s2 = df[(df['subject_race'] == driver_r2) & (df['officer_race'] == officer_r2)]
@@ -153,7 +151,7 @@ def propensity_score_matching(df,**cfg):
 
         nbrs = NearestNeighbors(n_neighbors=1, algorithm='ball_tree').fit(non_treated_x)
         distances, indices = nbrs.kneighbors(treated_x)
-        match_vals = [s1_outcome.loc[ind[0],val] if d < cfg['ps_threshold'] else 'No Match' for d,ind in zip(distances,indices)]
+        match_vals = [s1_outcome.loc[ind[0],val] if d < ps_threshold else 'No Match' for d,ind in zip(distances,indices)]
         extra_nans = [np.nan]*(len(s2) - len(match_vals))
         match_vals += extra_nans
         
@@ -161,17 +159,17 @@ def propensity_score_matching(df,**cfg):
     
     return s2
 
-def t_test_results(matches,**cfg):
+def t_test_results(matches, indir, outdir, ohe_cols, strata_1, strata_2, ps_threshold, alpha):
     
     output_df = pd.DataFrame(columns = ['Strata_1','Strata_2','T_Statistic','P_Value','Conclusion'],\
                              index=['search_conducted','citation_issued','arrest_made'])
     analyses = ['search_conducted','citation_issued','arrest_made']
-    strata_1, strata_2 = cfg['strata_1'], cfg['strata_2']
+    strata_1, strata_2 = strata_1, strata_2
     string_map = {'search_conducted':'searches conducted',
                  'citation_issued':'citations issued',
                  'arrest_made':'arrests made'}
-    driver_r1, officer_r1 = cfg['strata_1'].split('/')
-    driver_r2, officer_r2 = cfg['strata_2'].split('/')
+    driver_r1, officer_r1 = strata_1.split('/')
+    driver_r2, officer_r2 = strata_2.split('/')
     
     for a in analyses:
         
@@ -180,7 +178,7 @@ def t_test_results(matches,**cfg):
         a_matches = a_matches[(a_matches[matched_col]!='No Match') & (a_matches[a].notnull()) & (a_matches[matched_col].notnull())]
         t_stat, p_val = ttest_rel(a_matches[matched_col],a_matches[a],nan_policy="omit")
         
-        if (p_val/2) < cfg['alpha']:
+        if (p_val/2) < alpha:
             if t_stat > 0:
                 output_df.loc[a] = [strata_1,strata_2,t_stat,p_val,("Traffic stops involving drivers "
                 "of race {} and officers of race {} had a greater proportion of {} than"
@@ -195,28 +193,29 @@ def t_test_results(matches,**cfg):
             'officers of race {}').format(string_map[a],driver_r1,officer_r1,driver_r2,officer_r2)]      
     return output_df
 
-def propensity_analysis(dfs, **cfg):
+def propensity_analysis(dfs, indir, outdir, ohe_cols, strata_1, strata_2, ps_threshold, alpha):
     
     ps_dfs = False
     for df in dfs:
-        ps_df = propensity_score_func(df,**cfg)
+        ps_df = propensity_score_func(df, indir, outdir, ohe_cols, strata_1, strata_2, ps_threshold, alpha)
         if isinstance(ps_dfs, pd.DataFrame):
             ps_dfs = pd.concat([ps_dfs,ps_df])
         else:
             ps_dfs = ps_df
     ps_dfs = ps_dfs.sample(frac=1,random_state = 1).reset_index(drop=True)
-    matches = propensity_score_matching(ps_dfs,**cfg)
-    results = t_test_results(matches,**cfg)
-    return results
+    matches = propensity_score_matching(ps_dfs, indir, outdir, ohe_cols, strata_1, strata_2, ps_threshold, alpha)
+    results = t_test_results(matches, indir, outdir, ohe_cols, strata_1, strata_2, ps_threshold, alpha)
+    return print(results)
 
-def driver(**cfg):
+# def driver(**cfg):
+def driver(indir, outdir, ohe_cols, strata_1, strata_2, ps_threshold, alpha):
 
     if outdir and not os.path.exists(outdir):
         os.makedirs(outdir)
 
     df_iter = [pd.read_csv(os.path.join(indir, p)) for p in os.listdir(indir)]
 
-    return propensity_analysis(df_iter, **cfg)
+    return propensity_analysis(df_iter, indir, outdir, ohe_cols, strata_1, strata_2, ps_threshold, alpha)
 
 # def propensity_matching(propensity_scores):
     
