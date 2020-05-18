@@ -1,6 +1,7 @@
 {
     "locations" : ["sc"],
     "columns" : [
+      "date",
       "subject_race",
       "subject_sex",
       "officer_race",
