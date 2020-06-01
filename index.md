@@ -53,7 +53,7 @@ This process is visually depicted below:
 
 Shown below is a chart specifying the outcomes which we found significant for specific driver race pairings:
 
-<div style="text-align:center"><img src="imgs/PSA_Outcome.svg" /></div>
+<div style="text-align:center"><img src="imgs/PSA_Outcome.svg" /></div>  
 
 This chart can be read in two ways:
 1. Starting with officers and then considering drivers.   
