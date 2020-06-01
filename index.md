@@ -38,25 +38,27 @@ Add information about data ingestion here and include exploratory data analysis.
 
 ## Analysis
 
-> This section will include the bulk of our analysis.
-
-To ensure that we isolate the effect that preference-based discrimination has on an officer’s decision to search, cite or arrest a driver, we must remove, or limit, the effect that other variables (e.g., location, time, stop cause) have on an officer's stop decisions. In our analysis, we will do this by employing propensity score matching in our analysis. Using this statistical matching technique will involve:
+To ensure that we isolate the effect that preference-based discrimination has on an officer’s decision to search, cite or arrest a driver, we must remove, or limit, the effect that other variables (e.g., location, time, stop cause) have on an officer's stop decisions. In our analysis, we will do this by employing propensity score analysis. Using this statistical matching technique will involve:
 1. Developing propensity score functions, which estimate the likelihood of a stop resulting in the driver being searched, cited and arrested. 
 2. Computing a propensity score for each stop. 
 3. Dividing the traffic stops into multiple groups based on the races of the driver and the officer involved in the stop. 
 4. Matching stops from the above groups to form strata. 
-5. Compare the means of the stop outcome variable (e.g., 1 for searched/cited/arrested and 0 for not searched/not cited/ not arrested) to estimate the average causal effect of the race variables on the stop outcome. 
+5. Perform statistical testing (e.g., 1 for searched/cited/arrested and 0 for not searched/not cited/ not arrested) to draw conclusions about the effect of the race on post-stop outcomes.  
 
-*... add more of completed analysis later...*
+This process is visually depicted below:  
 
 <div style="text-align:center"><img src="imgs/propensity_placeholder.png" /></div>
 
 ## Conclusion / Next Steps
 
-> Wrap up our findings here and propose a solution to the aforementioned problem.
-
-Shown here is what we expect our conclusion plot to look like wherein we identify any statistical significance that we found in our analysis.
+Shown below is a chart specifying the outcomes which we found significant for specific driver race pairings:
 
 <div style="text-align:center"><img src="imgs/PSA_Outcome.svg" /></div>
+
+This chart can be read in two ways:
+1. Starting with officers and then considering drivers.   
+   - For example, if we consider white officers (i.e, the first row), looking at the column corresponding to Asian drivers (i.e., the third column) tells us that white officers search and cite Asian drivers more than white officers search and cite white drivers. 
+2. Starting with drivers and then considering officers.   
+   - For example, if we consider white drivers (i.e, the first columns), looking at the row corresponding to Asian officers (i.e., the third row) tells us that white drivers are searched and cited by Asian officers more than white drivers are searched and cited by white officers. 
 
 *... add proposed fixes to police departments to combat racial discrimination ...*
