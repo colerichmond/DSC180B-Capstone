@@ -45,7 +45,7 @@ This process is visually depicted below:
 
 <div style="text-align:center"><img src="imgs/propensity_placeholder.png" /></div>
 
-## Conclusion / Next Steps
+## Conclusion
 
 Shown below is a chart specifying the outcomes which we found significant for specific driver race pairings:
 
@@ -58,6 +58,8 @@ This chart can be read in two ways:
    - For example, if we consider white drivers (i.e, the first columns), looking at the row corresponding to Asian officers (i.e., the third row) tells us that white drivers are searched and cited by Asian officers more than white drivers are searched and cited by white officers.
 
 As can be seen in the chart above, our research found that preference-based discrimination is present in traffic stops and that police officers are more likely to search and arrest drivers outside their racial group. This research suggests that preference-based discrimination by police officers is not specific to a racial group; it is more widespread.
+
+## Next Steps
 
 From this research, we hope to bring awareness to the role that race, both of the police officers and of the drivers, plays in the outcome of traffic stops. Our hope is that awareness on behalf of the police departments would lead to an enhancement of general officer training around the issues of racial discrimination, thus making traffic stops more impartial. 
 
