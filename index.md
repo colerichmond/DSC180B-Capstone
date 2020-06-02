@@ -6,7 +6,7 @@ In recent years, in San Diego and in many other cities, tensions between the cit
 
 To expand on the studies conducted in this area, our research group is looking to investigate how a police officer’s race affects his or her decision-making process during traffic stops. Police are faced with many choices when monitoring motorists, such as whether to pull a driver over, whether to search the driver and whether to cite and/or arrest the driver.  If race is not an important factor in influencing a police officer's actions, then these outcomes should be independent of the races of both the driver and the officer. To test such an assumption, we will examine traffic stops made under similar circumstances and analyze the outcomes of those stops to determine if the races of the police officer and the driver are a factor in the outcomes. If they are, this might indicate that race does play an important role in the behavior of police officers when conducting traffic stops.
 
-To ensure that our conclusions are more general, and not simply particular to a single police force, we will include data from multiple cities in our study. Florida, South Carolina, and Pittsburgh, Pennsylvania are three places that differ in geographic location as well as racial makeup.  Including these cities in our analysis will allow us to make a more general conclusion as to whether race is a factor in policing and whether such discrimination is localized or more widespread.
+Data from South Carolina, Florida and Pittsburgh will be used in our analysis.
 
 <div style="text-align:center"><img src="imgs/us.png" /></div>
 
@@ -20,7 +20,11 @@ In our project , we are examining the findings from Antonovics and Knight in *A 
 
 ## Data Description
 
-Add information about data ingestion here and include exploratory data analysis...
+To ensure that our conclusions are more general, and not simply particular to a single police force, we will include data from multiple cities in our study. Florida, South Carolina, and Pittsburgh, Pennsylvania are three places that differ in geographic location as well as racial makeup. Including these cities in our analysis will allow us to make a more general conclusion as to whether race is a factor in policing and whether such discrimination is localized or more widespread.
+
+We obtained traffic stops data from these locations from the Stanford Open Policing Project, an organization created “to help researchers, journalists, and policymakers investigate and improve interactions between police and the public.” From these three locations, we obtained 16,555,906 traffic stops (South Carolina- 8,983,810 stops, Florida-  7,297,538 stops, Pittsburgh- 274,558 stops). After filtering out traffic stops with missing and/or invalid data, we kept 11,999,907 traffic stops (South Carolina- 8,930,556 stops, Florida- 2,865,736 stops, Pittsburgh- 203,615 stops). Our final dataset contained 72.5% of all the traffic stops. 
+
+The first five traffic stops from each of the locations is shown below: 
 
 <div style="text-align:center"><img src="imgs/eda.png" /></div>
 
