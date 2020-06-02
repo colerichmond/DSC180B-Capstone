@@ -20,8 +20,6 @@ In our project , we are examining the findings from Antonovics and Knight in *A 
 
 ## Data Description
 
-> We will describe the data being used in our analysis here. This section will parallel the work that we completed in our exploratory data analysis for Checkpoint #2.
-
 Add information about data ingestion here and include exploratory data analysis...
 
 <div style="text-align:center"><img src="imgs/eda.png" /></div>
