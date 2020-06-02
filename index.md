@@ -26,10 +26,13 @@ We obtained traffic stops data from these locations from the Stanford Open Polic
 
 The first five traffic stops from each of the locations is shown below: 
 
+### South Carolina
 <div style="text-align:center"><img src="imgs/South_Carolina_TrafficStops.png" /></div>
 
+### Florida
 <div style="text-align:center"><img src="imgs/Florida_Traffic_Stop_Head.png" /></div>
 
+### Pittsburgh
 <div style="text-align:center"><img src="imgs/Pittsburgh_Traffic_stops.png" /></div>
 
 *... put interactive plot here to allow audience to do exploratory data analysis for themselves...*
