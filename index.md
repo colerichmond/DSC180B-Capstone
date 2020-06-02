@@ -20,7 +20,7 @@ In our project , we are examining the findings from Antonovics and Knight in *A 
 
 ## Data Description
 
-To ensure that our conclusions are not simply particular to a single police force, we will include data from multiple cities in our study. Florida, South Carolina, and Pittsburgh, Pennsylvania are three places that differ in geographic location as well as racial makeup. Including these cities in our analysis will allow us to make a more general conclusion as to whether race is a factor in policing and whether such discrimination is localized or more widespread.
+To ensure that our conclusions are not simply particular to a single police force, we will include data from multiple locations in our study. Florida, South Carolina, and Pittsburgh, Pennsylvania are three places that differ in geographic location as well as racial makeup. Including these locations in our analysis will allow us to make a more general conclusion as to whether race is a factor in policing and whether such discrimination is localized or more widespread.
 
 We obtained traffic stops data from these locations from the Stanford Open Policing Project, an organization created “to help researchers, journalists, and policymakers investigate and improve interactions between police and the public.” From these three locations, we obtained 16,555,906 traffic stops (South Carolina- 8,983,810 stops, Florida-  7,297,538 stops, Pittsburgh- 274,558 stops). After filtering out traffic stops with missing and/or invalid data, we kept 11,999,907 traffic stops (South Carolina- 8,930,556 stops, Florida- 2,865,736 stops, Pittsburgh- 203,615 stops). Our final dataset contained 72.5% of all the traffic stops. 
 
