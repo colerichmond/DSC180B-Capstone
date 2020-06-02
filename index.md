@@ -35,11 +35,9 @@ The first five traffic stops from each of the locations is shown below:
 ### Pittsburgh
 <div style="text-align:center"><img src="imgs/Pittsburgh_Traffic_stops.png" /></div>
 
-*... put interactive plot here to allow audience to do exploratory data analysis for themselves...*
+Below select the race of either the driver or officer to investigate the outcome rates for the corresponding selection:
 
 <div style="text-align:center"><img src="imgs/interactive.jpg" /></div>
-
-*... potential to add real-world example of racial bias in traffic stops here...*
 
 ## Analysis
 
