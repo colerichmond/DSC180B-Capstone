@@ -56,7 +56,9 @@ This process is visually depicted below:
 
 ## Conclusion
 
-Shown below is a chart specifying the outcomes which we found significant for specific driver race pairings:
+From our Veil of Darkness analysis, we concluded that driver/officer race pairings played a significant role in officers' decisions to initiate traffic stops in Florida, but did not play a significant role in officers' decisions to initiate traffic stops in Pittsburgh. Due to time not being present in South Carolina's traffic stops data, we were not able to perform our Veil of Darkness analysis on South Carolina's traffic stops.
+
+Shown below is a chart specifying the post-stop outcomes which we found statistically significant for specific driver race pairings:
 
 <div style="text-align:center"><img src="imgs/PSA_Outcome.svg" /></div>  
 
