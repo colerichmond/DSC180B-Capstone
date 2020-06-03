@@ -35,6 +35,7 @@ The first five traffic stops from each of the locations is shown below:
 ### Pittsburgh
 <div style="text-align:center"><img src="imgs/Pittsburgh_Traffic_stops.png" /></div>
 
+
 Below select the race of either the driver or officer to investigate the outcome rates for the corresponding selection:
 
 <div style="text-align:center"><img src="imgs/interactive.jpg" /></div>
@@ -56,8 +57,11 @@ This process is visually depicted below:
 
 ## Conclusion
 
-From our Veil of Darkness analysis, we concluded that driver/officer race pairings played a significant role in officers' decisions to initiate traffic stops in Florida, but did not play a significant role in officers' decisions to initiate traffic stops in Pittsburgh. Due to time not being present in South Carolina's traffic stops data, we were not able to perform our Veil of Darkness analysis on South Carolina's traffic stops.
+From our Veil of Darkness analysis, we concluded that driver/officer race pairings played a significant role in officers' decisions to initiate traffic stops in Florida with a larger affect on the sub-population of only black and white, but did not play a significant role in officers' decisions to initiate traffic stops in Pittsburgh. Due to time not being present in South Carolina's traffic stops data, we were not able to perform our Veil of Darkness analysis on South Carolina's traffic stops.
 
+Shown below is the statistics and outcome of race-pairings affecting stop rates
+<div style="text-align:center"><img src="imgs/chart.analysis.png" /></div>
+<br>
 Shown below is a chart specifying the post-stop outcomes which we found statistically significant for specific driver race pairings:
 
 <div style="text-align:center"><img src="imgs/PSA_Outcome.svg" /></div>  
