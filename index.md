@@ -61,6 +61,11 @@ From our Veil of Darkness analysis, we concluded that driver/officer race pairin
 
 Shown below is the statistics and outcome of race-pairings affecting stop rates
 <div style="text-align:center"><img src="imgs/chart.analysis.png" /></div>
+
+The odds ratio of 1, >1 and <1 suggests if racial pairings have an impact on the stops done by officer.
+<br>
+1 - Race pairings doesn’t affect the stops with variations of light.     >1 - Varying race pairings are more likely to be stopped in day than night.       <1 - Same race pairings are more likely to be stopped in day than night.
+
 <br>
 Shown below is a chart specifying the post-stop outcomes which we found statistically significant for specific driver race pairings:
 
