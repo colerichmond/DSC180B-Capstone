@@ -52,7 +52,7 @@ To ensure that we isolate the effect that preference-based discrimination has on
 
 This process is visually depicted below:  
 
-<div style="text-align:center"><img src="imgs/propensity_placeholder.png" /></div>
+<div style="text-align:center"><img src="imgs/prop_score.png" /></div>
 
 ## Conclusion
 
