@@ -63,7 +63,26 @@ In recent years, in San Diego and in many other cities, tensions between the cit
 
 
 <p>To get a sense of the proportion of stops that resulted in police action (e.g., a search was conducted, etc.), a table containing the proportion of post-stop outcomes that resulted in a search, citation and/or arrest are shown below:</p>
-<div style="text-align:center"><img src="imgs/Stop_Outcomes_Proportions.png" /></div>
+<button id="one">Officer Race</button>
+<button id="two">Driver Race</button>
+<iframe id="iframe" src="https://infogram.com/copy-photography-1h706ekeek9765y?live" width = "366" height = "290"></iframe>
+
+<script>
+var buttonOfficer = document.getElementById("one");
+var buttonDriver = document.getElementById("two");
+var iframee = document.getElementById("iframe");
+
+buttonOfficer.addEventListener("click", buttonClick, false);
+buttonDriver.addEventListener("click", buttonClick, false);
+
+function buttonClick(e){
+    if(e.target.id === "one"){
+        iframee.src = "https://infogram.com/copy-photography-1h706ekeek9765y?live";
+    }else{
+        iframee.src = "https://infogram.com/photography-1hxj48gp79yr2vg?live";
+    } 
+};
+</script>
 
   <div class="w3-container w3-text-theme">
 <h2 id="analysis">Analysis</h2>
