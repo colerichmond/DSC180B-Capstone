@@ -71,6 +71,13 @@ def stats(df_light, df, df_lightp, dfp):
     tables = sm.stats.Table2x2([dflist, df_lightlist])
     return stats.fisher_exact(df1), tables.oddsratio_confint(), stats.sem(df_lightp.tolist())
 
+def prportions(pt):
+    pt1 = pt
+    pt1['count'] = [1]*len(pt)
+    pt1
+    return pt1.groupby(['subject_race']).count() / len(pt)
+prportions(pt)
+
 sundictionary = sun(sunpit)
 a= table(ptwb)
 sAmeL, sAmeD = compare(sundictionary, a, a)
