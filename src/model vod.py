@@ -76,10 +76,32 @@ def prportions(pt):
     pt1['count'] = [1]*len(pt)
     pt1
     return pt1.groupby(['subject_race']).count() / len(pt)
+
 prportions(pt)
+prportions(fl)
+prportions(ptwb)
+prportions(flwb)
 
 sundictionary = sun(sunpit)
 a= table(ptwb)
+sAmeL, sAmeD = compare(sundictionary, a, a)
+sAmeplot, sAmestats, sAme, sAmee = grouped(sAmeL, sAmeD)
+print(stats(sAmeplot, sAmestats, sAme, sAmee))
+
+sundictionary = sun(sunpit)
+a= table(pt)
+sAmeL, sAmeD = compare(sundictionary, a, a)
+sAmeplot, sAmestats, sAme, sAmee = grouped(sAmeL, sAmeD)
+print(stats(sAmeplot, sAmestats, sAme, sAmee))
+
+sundictionary = sun(sunpit)
+a= table(flwb)
+sAmeL, sAmeD = compare(sundictionary, a, a)
+sAmeplot, sAmestats, sAme, sAmee = grouped(sAmeL, sAmeD)
+print(stats(sAmeplot, sAmestats, sAme, sAmee))
+
+sundictionary = sun(sunpit)
+a= table(fl)
 sAmeL, sAmeD = compare(sundictionary, a, a)
 sAmeplot, sAmestats, sAme, sAmee = grouped(sAmeL, sAmeD)
 print(stats(sAmeplot, sAmestats, sAme, sAmee))
