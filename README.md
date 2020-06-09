@@ -53,3 +53,9 @@ PROJECT
 
 * `prop_score.ipynb`: Imports code from `src` for the purpose of running the propensity score analysis. 
 * `sandbox.ipynb`: Imports code from `src` for the purpose of analysis. 
+
+### Description of Targets
+
+* `!python run.py data`: Collects traffic stops data from Stanford Open Policing Portal and cleans it.
+* `!python run.py model`: Performs propensity score and veil of darkness analysis on traffic stops.
+* `!python run.py test-project`: Ingests, cleans, and runs model on a subset of the traffic stops data for the purpose of testing.
