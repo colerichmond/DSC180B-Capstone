@@ -168,5 +168,3 @@ def driver(indir, outdir, ohe_cols, strata_1, strata_2, ps_threshold, alpha):
     df_iter = [pd.read_csv(os.path.join(indir, p)) for p in os.listdir(indir)]
 
     return propensity_analysis(df_iter, indir, outdir, ohe_cols, strata_1, strata_2, ps_threshold, alpha)
-
-    
